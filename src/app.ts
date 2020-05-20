@@ -1,20 +1,46 @@
-import express from "express";
-import path from "path";
-// import { indexRouter } from "../routes/index";
-import { config } from "../config";
+import * as express from 'express'
+import { Application } from 'express'
 
-const app = express();
-const DEFAULT_PORT = config.server.DEFAULT_PORT;
+class App {
+    public app: Application
+    public port: number
 
-// ejs config
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+    constructor(appInit: { port: number; middleWares: any; controllers: any; }) {
+        this.app = express()
+        this.port = appInit.port
 
-// Route handler
-// app.use("/", indexRouter);
+        this.middlewares(appInit.middleWares)
+        this.routes(appInit.controllers)
+        this.assets()
+        this.template()
+    }
 
-// Start Express Server
-app.listen(DEFAULT_PORT, () => {
-    // tslint:disable-next-line:no-console
-    console.log( `server started on port: ${ DEFAULT_PORT }` );
-});
+    private middlewares(middleWares: { forEach: (arg0: (middleWare: any) => void) => void; }) {
+        middleWares.forEach(middleWare => {
+            this.app.use(middleWare)
+        })
+    }
+
+    private routes(controllers: { forEach: (arg0: (controller: any) => void) => void; }) {
+        controllers.forEach(controller => {
+            this.app.use('/', controller.router)
+        })
+    }
+
+    private assets() {
+        this.app.use(express.static('public'))
+        this.app.use(express.static('views'))
+    }
+
+    private template() {
+        this.app.set('view engine', 'pug')
+    }
+
+    public listen() {
+        this.app.listen(this.port, () => {
+            console.log(`App listening on port : ${this.port}`)
+        })
+    }
+}
+
+export default App

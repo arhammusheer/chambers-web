@@ -1,5 +1,6 @@
-export let config = {
+export const config = {
+    //Server Config
     "server":{
-        "DEFAULT_PORT": 3000
+        "port":3000
     }
-};
+}
