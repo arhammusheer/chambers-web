@@ -1,34 +1,23 @@
 {
-   "name": "new-typeorm-project",
-   "version": "0.0.1",
-   "description": "Awesome project developed with TypeORM.",
-   "devDependencies": {
-      "@types/node": "^14.0.4",
-      "ts-node": "^8.10.1",
-      "tslint": "^6.1.2",
-      "typescript": "^3.9.3"
-   },
-   "dependencies": {
-      "@types/bcryptjs": "^2.4.2",
-      "@types/body-parser": "^1.19.0",
-      "@types/cors": "^2.8.6",
-      "@types/helmet": "0.0.47",
-      "@types/jsonwebtoken": "^8.5.0",
-      "bcryptjs": "^2.4.3",
-      "body-parser": "^1.19.0",
-      "class-validator": "^0.12.2",
-      "cors": "^2.8.5",
-      "express": "^4.17.1",
-      "helmet": "^3.22.0",
-      "jsonwebtoken": "^8.5.1",
-      "mongodb": "^3.5.7",
-      "reflect-metadata": "^0.1.13",
-      "ts-node-dev": "^1.0.0-pre.44",
-      "typeorm": "^0.2.25"
-   },
-   "scripts": {
-      "start:dev": "ts-node src/index.ts",
-      "start": "node build/index.js",
-      "build": "tsc"
-   }
+  "name": "chambers-web",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "start:dev": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "hbs": "^4.1.1",
+    "http-errors": "^1.7.3",
+    "mongoose": "^5.9.15",
+    "mongoose-findorcreate": "^3.0.0",
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0"
+  }
 }
