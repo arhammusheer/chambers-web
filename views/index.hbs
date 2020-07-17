@@ -1,4 +1,61 @@
-<div class="container">
-	
-	<p>You are logged in</p>
+<div class="d-flex bg-success">
+  <div class="col-md-2 bg-success vh-100">
+    <br />
+    <div class="container-fluid">
+      <ul class="list-group">
+        <li class="list-group-item shadow border-0 font-weight-bold">
+          <a href="#" style="text-decoration: none;">
+            <i class="fas fa-cubes"></i>
+            My chambers
+          </a>
+        </li>
+        <li class="list-group-item shadow border-0 font-weight-bold">
+          <a href="#" style="text-decoration: none;">
+            <i class="fas fa-plus"></i>
+            Add New
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="jumbotron mt-2 vh-100 shadow-lg very-rounded py-4">
+      <div class="h2 font-weight-bold">
+        Global Chat
+      </div>
+      <hr />
+      <div id="active-user-list"></div>
+      <div class="bg-secondary very-rounded p-2 my-2" id="message-log"></div>
+
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control bg-dark text-success"
+          placeholder="Message Global Chat"
+          aria-label="Message Global Chat"
+					id="message-field"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-success"
+            type="button"
+            id="send-message-button"
+          >
+		  	<i class="fas fa-paper-plane"></i>
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<div id="current-user-name" hidden>
+  {{user.displayName}}
+</div>
+<div id="current-user-id" hidden>
+  {{user._id}}
+</div>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"
+></script>
+<script src="/javascripts/chat.js"></script>

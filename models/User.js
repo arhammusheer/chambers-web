@@ -7,10 +7,11 @@ var UserSchema = new Schema({
     displayName: String,
     firstName: String,
     lastName: String,
+    username: String,
     googleId: String,
     email: String,
     pictureUrl: String,
-    notepad: String
+    phone: String
 });
 
 UserSchema.plugin(findOrCreate);

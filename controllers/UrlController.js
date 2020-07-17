@@ -48,9 +48,17 @@ urlController.room = function (req, res, next) {
 
 urlController.profile = function (req, res, next) {
   if (req.user) {
-    res.render("profile", {user: req.user});
+    res.render("profile", { user: req.user });
   } else {
     res.redirect("/login");
+  }
+};
+
+urlController.profileEdit = async function (req, res, next) {
+  if (req.user) {
+    await User.findOneAndUpdate(req.user._id, req.body);
+  } else {
+    res.status(400);
   }
 };
 
