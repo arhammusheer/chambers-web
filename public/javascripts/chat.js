@@ -38,7 +38,8 @@ socket.on("chat message", function (data) {
   console.log(data);
   let newMessage = document.createElement("div");
   newMessage.innerHTML = `<span class="text-success font-weight-bold">${data.user.username} : </span> ${data.message}`;
-  messageLog.appendChild(newMessage);
+	messageLog.appendChild(newMessage);
+	messageLog.scrollTop = messageLog.scrollHeight;
 });
 
 socket.on("typing", function (data) {
