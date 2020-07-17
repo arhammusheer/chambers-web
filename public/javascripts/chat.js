@@ -44,7 +44,7 @@ socket.on("chat message", function (data) {
 socket.on("typing", function (data) {
   const { isTyping, nick } = data;
 
-  if (!isTyping) {
+  if (isTyping < 1) {
     typingStatus.innerHTML = "";
     return;
   }
@@ -65,14 +65,14 @@ sendMessageButton.onclick = () => {
 };
 
 messageField.addEventListener("keyup", (event) => {
-
-	socket.emit("typing", {
-    isTyping: messageField.value.length > 1,
-    nick: userName,
-	});
 	
   if (event.keyCode === 13) {
     event.preventDefault();
     sendMessageButton.click();
-  }
+	}
+	
+	socket.emit("typing", {
+    isTyping: messageField.value.length,
+    nick: userName,
+	});
 });
