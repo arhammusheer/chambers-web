@@ -8,7 +8,7 @@ let messageLog = document.getElementById("message-log");
 let sendMessageButton = document.getElementById("send-message-button");
 let messageField = document.getElementById("message-field");
 let typingStatus = document.getElementById("is-typing-field");
-let notificationSound = document.getElementById("notification-sound")
+let notificationSound = document.getElementById("notification-sound");
 
 const newUserConnected = (user) => {
   socket.emit("new user", {
@@ -29,11 +29,13 @@ socket.on("new user", function (data) {
     newUser.id = data[reference].userid;
     newUser.innerHTML = data[reference].username;
     userList.appendChild(newUser);
+    document.getElementById("connect-sound").play();
   }
 });
 
 socket.on("user disconnected", function (user) {
   document.getElementById(`${user.userid}`).remove();
+  document.getElementById("disconnect-sound").play();
 });
 
 socket.on("chat message", function (data) {
@@ -43,7 +45,7 @@ socket.on("chat message", function (data) {
   messageLog.appendChild(newMessage);
   messageLog.scrollTop = messageLog.scrollHeight;
   if (!document.hasFocus()) {
-		notificationSound.play();
+    notificationSound.play();
   }
 });
 
