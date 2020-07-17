@@ -7,7 +7,7 @@ let userID = document.getElementById("current-user-id").innerHTML;
 let messageLog = document.getElementById("message-log");
 let sendMessageButton = document.getElementById("send-message-button");
 let messageField = document.getElementById("message-field");
-
+let typingStatus = document.getElementById("is-typing-field");
 const newUserConnected = (user) => {
   socket.emit("new user", {
     userid: userID,
@@ -41,6 +41,17 @@ socket.on("chat message", function (data) {
   messageLog.appendChild(newMessage);
 });
 
+socket.on("typing", function (data) {
+  const { isTyping, nick } = data;
+
+  if (!isTyping) {
+    typingStatus.innerHTML = "";
+    return;
+  }
+	console.log(`${nick} is typing`);
+  typingStatus.innerHTML = `${nick} is typing...`;
+});
+
 function sendChatMessage(message) {
   data = message;
   socket.emit("chat message", data);
@@ -49,10 +60,17 @@ function sendChatMessage(message) {
 
 sendMessageButton.onclick = () => {
   if (messageField.value) sendChatMessage(messageField.value);
-  messageField.value = "";
+	messageField.value = "";
+	typingStatus.innerHTML = "";	
 };
 
 messageField.addEventListener("keyup", (event) => {
+
+	socket.emit("typing", {
+    isTyping: messageField.value.length > 1,
+    nick: userName,
+	});
+	
   if (event.keyCode === 13) {
     event.preventDefault();
     sendMessageButton.click();
