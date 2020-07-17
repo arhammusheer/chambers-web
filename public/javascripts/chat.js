@@ -48,7 +48,7 @@ socket.on("typing", function (data) {
     typingStatus.innerHTML = "";
     return;
   }
-	console.log(`${nick} is typing`);
+  console.log(`${nick} is typing`);
   typingStatus.innerHTML = `${nick} is typing...`;
 });
 
@@ -60,19 +60,22 @@ function sendChatMessage(message) {
 
 sendMessageButton.onclick = () => {
   if (messageField.value) sendChatMessage(messageField.value);
-	messageField.value = "";
-	typingStatus.innerHTML = "";	
-};
-
-messageField.addEventListener("keyup", (event) => {
-	
-  if (event.keyCode === 13) {
-    event.preventDefault();
-    sendMessageButton.click();
-	}
-	
+  messageField.value = "";
+	typingStatus.innerHTML = "";
 	socket.emit("typing", {
     isTyping: messageField.value.length,
     nick: userName,
-	});
+  });
+};
+
+messageField.addEventListener("keyup", (event) => {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    messageField.value = "";
+    sendMessageButton.click();
+  }
+  socket.emit("typing", {
+    isTyping: messageField.value.length,
+    nick: userName,
+  });
 });
