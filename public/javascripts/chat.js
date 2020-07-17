@@ -71,7 +71,6 @@ sendMessageButton.onclick = () => {
 messageField.addEventListener("keyup", (event) => {
   if (event.keyCode === 13) {
     event.preventDefault();
-    messageField.value = "";
     sendMessageButton.click();
   }
   socket.emit("typing", {
