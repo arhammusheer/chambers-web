@@ -6,7 +6,7 @@ localTheme = localStorage["set-theme"];
 
 if (localTheme == "dark") darkTheme();
 if (localTheme == "light") lightTheme();
-if (!localTheme) lightTheme();
+if (!localTheme) darkTheme();
 if (localTheme != "dark" && localTheme != "light") lightTheme();
 
 function darkTheme() {

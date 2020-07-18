@@ -10,6 +10,10 @@ let messageField = document.getElementById("message-field");
 let typingStatus = document.getElementById("is-typing-field");
 let notificationSound = document.getElementById("notification-sound");
 
+let availableColors = ["#52db23","#59c037","#ae73ce","#0e97f8","#ee54ce","#6f0ef1","#0628bd","#bbd621"];
+let currentColor =
+  availableColors[Math.floor(Math.random() * availableColors.length)];
+
 const newUserConnected = (user) => {
   socket.emit("new user", {
     userid: userID,
@@ -41,7 +45,7 @@ socket.on("user disconnected", function (user) {
 socket.on("chat message", function (data) {
   console.log(data);
   let newMessage = document.createElement("div");
-  newMessage.innerHTML = `<span class="text-success font-weight-bold">${data.user.username} : </span> ${data.message}`;
+  newMessage.innerHTML = `<span class="badge font-weight-bold text-white" style="background-color: ${data.color}">${data.user.username} : </span> ${data.message}`;
   messageLog.appendChild(newMessage);
   messageLog.scrollTop = messageLog.scrollHeight;
   if (!document.hasFocus()) {
@@ -61,7 +65,10 @@ socket.on("typing", function (data) {
 });
 
 function sendChatMessage(message) {
-  data = message;
+  data = {
+    message: message,
+    color: currentColor,
+  };
   socket.emit("chat message", data);
   console.log(data);
 }
@@ -85,4 +92,8 @@ messageField.addEventListener("keyup", (event) => {
     isTyping: messageField.value.length,
     nick: userName,
   });
+});
+
+document.addEventListener("keydown", (event) => {
+  messageField.focus();
 });
