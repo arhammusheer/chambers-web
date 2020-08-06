@@ -1,23 +1,22 @@
-phoneView = document.getElementById("phone-view");
-phoneEdit = document.getElementById("phone-edit");
-phoneEditButton = document.getElementById("phone-edit-button");
-phonoeEditCancelButton = document.getElementById("cancel-button");
+nickView = document.getElementById("nickname-view");
+nickEdit = document.getElementById("nickname-edit");
+nickEditButton = document.getElementById("nickname-edit-button");
+nickEditCancelButton = document.getElementById("cancel-button");
+userNicknameInput = document.getElementById("user-nickname");
 
-phoneEditButton.onclick = function () {
-  $("#phone-view").fadeOut();
-  $("#phone-edit").fadeIn();
-  //phoneView.hidden = true;
-  phoneEdit.hidden = false;
+nickEditButton.onclick = function () {
+  $("#nickname-view").fadeOut();
+  $("#nickname-edit").fadeIn();
+  nickEdit.hidden = false;
 };
-phonoeEditCancelButton.onclick = function(){
-  $("#phone-view").fadeIn();
-  $("#phone-edit").fadeOut();
-  //phoneView.hidden = true;
-  phoneEdit.hidden = true;
-}
+nickEditCancelButton.onclick = function () {
+  $("#nickname-view").fadeIn();
+  $("#nickname-edit").fadeOut();
+  nickEdit.hidden = true;
+};
 
-$("#user-nickname").keypress(function (e) {
-  var length = this.value.length;
+userNicknameInput.addEventListener("keypress", (e) => {
+  var length = userNicknameInput.value.length;
   if (length > 30) {
     e.preventDefault();
     alert("Max limit: 30 characters");

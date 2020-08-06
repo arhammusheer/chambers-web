@@ -20,7 +20,7 @@
             {{user.email}}
           </a>
         </div>
-        <div id="phone-view" class="m-2">
+        <div id="nickname-view" class="m-2">
           Nickname:
           {{#if user.nickname}}
             {{user.nickname}}
@@ -29,11 +29,11 @@
               Not Set
             </span>
           {{/if}}
-          <a id="phone-edit-button">
+          <a id="nickname-edit-button">
             <i class="fas fa-edit"></i>
           </a>
         </div>
-        <form hidden class="form-inline" id="phone-edit" method="POST">
+        <form hidden class="form-inline" id="nickname-edit" method="POST">
           <div class="input-group">
             <input
               type="text"
