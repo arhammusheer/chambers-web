@@ -8,6 +8,7 @@ var UserSchema = new Schema({
     firstName: String,
     lastName: String,
     username: String,
+    nickname: String,
     googleId: String,
     email: String,
     pictureUrl: String,

@@ -38,7 +38,11 @@
   <source src="/media/disconnected.mp3" type="audio/mpeg" />
 </audio>
 <div id="current-user-name" hidden>
-  {{user.displayName}}
+  {{#if user.nickname}}
+    {{user.nickname}}
+  {{else}}
+    {{user.displayName}}
+  {{/if}}
 </div>
 <div id="current-user-id" hidden>
   {{user._id}}

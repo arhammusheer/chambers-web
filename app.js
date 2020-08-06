@@ -4,7 +4,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 require("dotenv").config();
-var bodyParser = require('body-parser');
+var bodyParser = require("body-parser");
 var indexRouter = require("./routes/index");
 
 var app = express();
@@ -20,7 +20,8 @@ mongoose
   .connect(process.env.MONGODB_URL_WITH_CREDS, {
     dbName: "chambers",
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false 
   })
   .then(() => {
     console.log("DB Connected");
@@ -52,7 +53,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_OAUTH_ID,
       clientSecret: process.env.GOOGLE_OAUTH_SECRET,
-      callbackURL: "/auth/google/callback"
+      callbackURL: "/auth/google/callback",
     },
     function (accessToken, refreshToken, profile, cb) {
       User.findOrCreate(

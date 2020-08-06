@@ -12,20 +12,20 @@
 					<div>Email: <a style="text-decoration: none;" href="mailto:{{user.email}}">{{user.email}}</a></div>
 				</li>
 				<li class="list-group-item d-flex justify-content-between">
-					<div id="phone-view">Phone:
-						{{#if user.phone}}
-						<a style="text-decoration: none;" href="callto:{{user.phone}}">
-							{{user.phone}}
-						</a>
+					<div id="phone-view">Nickname:
+						{{#if user.nickname}}
+							{{user.nickname}}
 						{{else}}
 						<span class="text-secondary">Not Set</span>
 						{{/if}}
 						<a id="phone-edit-button"><i class="fas fa-edit"></i></a>
 					</div>
-					<form hidden class="form-inline input-group" id="phone-edit">
-						<input type="tel" class="form-control" placeholder="Enter Phone Number" required />
-						<div class="input-group-append">
-							<input type="submit" class="btn btn-success" value="&#10004" />
+					<form hidden class="form-inline" id="phone-edit" method="POST">
+						<div class="input-group">
+						<input type="text" class="form-control" placeholder="Enter Nickname" name="nickname" required />
+  							<div class="input-group-append">
+    							<button type="submit" class="btn btn-success"><i class="fa fa-check"></i></button>
+							</div>
 						</div>
 					</form>
 				</li>

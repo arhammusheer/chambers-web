@@ -54,9 +54,24 @@ urlController.profile = function (req, res, next) {
   }
 };
 
-urlController.profileEdit = async function (req, res, next) {
+urlController.profileEdit = function (req, res, next) {
   if (req.user) {
-    await User.findOneAndUpdate(req.user._id, req.body);
+    User.findOneAndUpdate(
+      req.user._id,
+      {
+        nickname: req.body.nickname,
+      },
+      function (err, docs) {
+        if (err) {
+          console.log(err);
+          res.status(500);
+        } else {
+          console.log("updated user : ", docs);
+          req.user.nickname = req.body.nickname;
+          res.redirect(req.get("referer"));
+        }
+      }
+    );
   } else {
     res.status(400);
   }
