@@ -57,7 +57,7 @@ urlController.profile = function (req, res, next) {
 urlController.profileEdit = function (req, res, next) {
   if (req.user) {
     User.findOneAndUpdate(
-      req.user._id,
+      {_id: req.user._id},
       {
         nickname: req.body.nickname,
       },
