@@ -46,8 +46,11 @@
   {{/if}}
 </div>
 <div id="current-user-id" hidden>
-  {{user._id}}
+{{user._id}}
 </div>
+{{#if user.color}}
+<div id="current-user-color" hidden>{{user.color}}</div>
+{{/if}}
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"
 ></script>

@@ -9,10 +9,20 @@ let sendMessageButton = document.getElementById("send-message-button");
 let messageField = document.getElementById("message-field");
 let typingStatus = document.getElementById("is-typing-field");
 let notificationSound = document.getElementById("notification-sound");
-
-let availableColors = ["#52db23","#59c037","#ae73ce","#0e97f8","#ee54ce","#6f0ef1","#0628bd","#bbd621"];
+let userColor = document.getElementById("current-user-color").innerText;
+let availableColors = [
+  "#52db23",
+  "#59c037",
+  "#ae73ce",
+  "#0e97f8",
+  "#ee54ce",
+  "#6f0ef1",
+  "#0628bd",
+  "#bbd621",
+];
 let currentColor =
   availableColors[Math.floor(Math.random() * availableColors.length)];
+if(userColor) currentColor = userColor;
 
 const newUserConnected = (user) => {
   socket.emit("new user", {

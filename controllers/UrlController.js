@@ -56,22 +56,20 @@ urlController.profile = function (req, res, next) {
 
 urlController.profileEdit = function (req, res, next) {
   if (req.user) {
-    User.findOneAndUpdate(
-      {_id: req.user._id},
-      {
-        nickname: req.body.nickname,
-      },
-      function (err, docs) {
-        if (err) {
-          console.log(err);
-          res.status(500);
-        } else {
-          console.log("updated user : ", docs);
-          req.user.nickname = req.body.nickname;
-          res.redirect(req.get("referer"));
-        }
+    User.findOneAndUpdate({ _id: req.user._id }, req.body, function (
+      err,
+      docs
+    ) {
+      if (err) {
+        console.log(err);
+        res.status(500);
+      } else {
+        console.log("updated user : ", docs);
+        if (req.body.nickname) req.user.nickname = req.body.nickname;
+        if(req.body.color) req.user.color = req.body.color;
+        res.redirect(req.get("referer"));
       }
-    );
+    });
   } else {
     res.status(400);
   }
