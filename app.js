@@ -64,6 +64,7 @@ passport.use(
           lastName: profile.name.familyName,
           email: profile._json.email,
           pictureUrl: profile._json.picture,
+          color: "#000000"
         },
         function (err, user) {
           return cb(err, user);
