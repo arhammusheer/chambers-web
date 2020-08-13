@@ -1,30 +1,33 @@
-<div class="container-fluid">
-  <div class="jumbotron mt-2 vh-100 shadow-lg very-rounded py-4">
-    <div class="h2 font-weight-bold">
-      Global Chat
-    </div>
-    <hr />
-    <div id="active-user-list"></div>
+<div id="active-user-list" class="px-3"></div>
+<div
+  class="bg-secondary p-2 my-2"
+  style="height: 70vh; overflow-y: scroll;"
+  id="message-log"
+>
+  <div class="h2 font-weight-bold pl-2 m-0">Global Chat</div>
+  <div class="h6 pb-4 pl-2 m-0">Messages will appear here</div>
+</div>
+<small id="is-typing-field" class="text-success"></small>
+<div class="input-group p-1 pr-2 d-flex align-items-center">
+  <input
+    type="text"
+    class="form-control bg-light font-weight-bold text-dark very-rounded"
+    aria-label="Message Global Chat"
+    id="message-field"
+    placeholder="Message Here"
+    maxlength="500"
+    autofocus
+  />
+  <div class="input-group-append">
     <div
-      class="bg-secondary very-rounded p-2 my-2"
-      style="overflow-y: scroll; height:400px;"
-      id="message-log"
-    ></div>
-    <small id="is-typing-field" class="text-success"></small>
-    <div class="input-group mb-3">
-      <input
-        type="text"
-        class="form-control bg-light font-weight-bold text-dark"
-        aria-label="Message Global Chat"
-        id="message-field"
-        maxlength="2000"
-        autofocus
-      />
-      <div class="input-group-append">
-        <button class="btn btn-success" type="button" id="send-message-button">
-          <i class="fas fa-paper-plane"></i>
-          Send
-        </button>
+      class="d-flex align-items-center pl-2"
+      type="button"
+      id="send-message-button"
+    >
+      <div
+        class="d-flex align-items-center very-rounded shadow-lg shadow-light bg-success"
+      >
+        <i class="fas fa-paper-plane p-3 text-white"></i>
       </div>
     </div>
   </div>
@@ -46,10 +49,12 @@
   {{/if}}
 </div>
 <div id="current-user-id" hidden>
-{{user._id}}
+  {{user._id}}
 </div>
 {{#if user.color}}
-<div id="current-user-color" hidden>{{user.color}}</div>
+  <div id="current-user-color" hidden>
+    {{user.color}}
+  </div>
 {{/if}}
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"

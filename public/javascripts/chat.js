@@ -95,6 +95,7 @@ sendMessageButton.onclick = () => {
 
 messageField.addEventListener("keyup", (event) => {
   if (event.keyCode === 13) {
+    messageField.value = messageField.value.trim()
     event.preventDefault();
     sendMessageButton.click();
   }
@@ -102,6 +103,9 @@ messageField.addEventListener("keyup", (event) => {
     isTyping: messageField.value.length,
     nick: userName,
   });
+  if( messageField.value.length >= 500 ) {
+    alert("🛑 Message limit reached. Keep it cool bruh 🛑")
+  }
 });
 
 document.addEventListener("keydown", (event) => {
