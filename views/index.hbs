@@ -4,8 +4,12 @@
   style="height: 70vh; overflow-y: scroll;"
   id="message-log"
 >
-  <div class="h2 font-weight-bold pl-2 m-0">Global Chat</div>
-  <div class="h6 pb-4 pl-2 m-0">Messages will appear here</div>
+  <div class="h2 font-weight-bold pl-2 m-0">
+    Global Chat
+  </div>
+  <div class="h6 pb-4 pl-2 m-0">
+    Messages will appear here
+  </div>
 </div>
 <small id="is-typing-field" class="text-success"></small>
 <div class="input-group p-1 pr-2 d-flex align-items-center">
@@ -56,6 +60,9 @@
     {{user.color}}
   </div>
 {{/if}}
+<div id="user-image" hidden>
+  {{user.pictureUrl}}
+</div>
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"
 ></script>

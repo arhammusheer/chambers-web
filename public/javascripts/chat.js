@@ -10,6 +10,7 @@ let messageField = document.getElementById("message-field");
 let typingStatus = document.getElementById("is-typing-field");
 let notificationSound = document.getElementById("notification-sound");
 let userColor = document.getElementById("current-user-color").innerText;
+let userImage = document.getElementById("user-image").innerText;
 let availableColors = [
   "#52db23",
   "#59c037",
@@ -20,14 +21,16 @@ let availableColors = [
   "#0628bd",
   "#bbd621",
 ];
+
 let currentColor =
   availableColors[Math.floor(Math.random() * availableColors.length)];
-if(userColor) currentColor = userColor;
+if (userColor) currentColor = userColor;
 
 const newUserConnected = (user) => {
   socket.emit("new user", {
     userid: userID,
     username: userName,
+    userImage: userImage,
   });
 };
 
@@ -42,6 +45,16 @@ socket.on("new user", function (data) {
     newUser.className = "badge badge-pill badge-success";
     newUser.id = data[reference].userid;
     newUser.innerHTML = data[reference].username;
+    newUser.style = "cursor: pointer";
+    newUser.setAttribute(
+      "data-content",
+      `<div class="d-flex justify-content-center align-items-center"><img class="very-rounded" src="${data[reference].userImage.trim()}" height="50"><div>&nbsp;${data[reference].username}</div></div>`
+    );
+    $(newUser).popover({
+      placement: "bottom",
+      trigger: "hover",
+      html: true,
+    });
     userList.appendChild(newUser);
     document.getElementById("connect-sound").play();
   }
@@ -95,7 +108,7 @@ sendMessageButton.onclick = () => {
 
 messageField.addEventListener("keyup", (event) => {
   if (event.keyCode === 13) {
-    messageField.value = messageField.value.trim()
+    messageField.value = messageField.value.trim();
     event.preventDefault();
     sendMessageButton.click();
   }
@@ -103,8 +116,8 @@ messageField.addEventListener("keyup", (event) => {
     isTyping: messageField.value.length,
     nick: userName,
   });
-  if( messageField.value.length >= 500 ) {
-    alert("🛑 Message limit reached. Keep it cool bruh 🛑")
+  if (messageField.value.length >= 500) {
+    alert("🛑 Message limit reached. Keep it cool bruh 🛑");
   }
 });
 
