@@ -1,4 +1,63 @@
-<div id="active-user-list" class="px-3"></div>
+<div style="width: 90vw; height: 500px">
+<canvas id="Canvas">
+  Your browser does not support the whiteboard.
+</canvas>
+</div>
+<div class="container-fluid row justify-content-between">
+  <div id="active-user-list" class="px-3">
+    <div class="text-success">
+      Connecting...
+      <div
+        class="spinner-border text-success spinner-border-sm"
+        role="status"
+      ></div>
+      <small>
+        If you have not set up your nickname or color, do that in
+        <a href="/profile" class="text-info">
+          profile
+        </a>
+        to connect
+      </small>
+    </div>
+  </div>
+  <button
+    class="btn btn-sm very-rounded btn-success"
+    href="#"
+    data-toggle="modal"
+    data-target="#whiteboard-modal"
+  >
+    <i class="fas fa-chalkboard-teacher"></i>
+    Whiteboard
+  </button>
+  <div
+    class="modal fade"
+    tabindex="-1"
+    aria-labelledby="whiteboard-modal"
+    id="whiteboard-modal"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title" id="whiteboardModalLabel">
+            Whiteboard
+          </h6>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true" class="text-danger">
+              ×
+            </span>
+          </button>
+        </div>
+        <div class="modal-body"></div>
+      </div>
+    </div>
+  </div>
+</div>
 <div
   class="bg-secondary p-2 my-2"
   style="height: 70vh; overflow-y: scroll;"
@@ -36,6 +95,8 @@
     </div>
   </div>
 </div>
+
+
 <audio id="notification-sound" hidden>
   <source src="/media/newMessage.mp3" type="audio/mpeg" />
 </audio>
@@ -67,3 +128,4 @@
   src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"
 ></script>
 <script src="/javascripts/chat.js"></script>
+<script src="/javascripts/canvas.js"></script>

@@ -111,11 +111,13 @@ io.on("connection", function (socket) {
     io.emit("chat message", {
       user: socket.user,
       message: data.message,
-      color: data.color
+      color: data.color,
     });
   });
 
   socket.on("typing", function (data) {
     socket.broadcast.emit("typing", data);
   });
+
+  socket.on("drawing", (data) => socket.broadcast.emit("drawing", data));
 });
