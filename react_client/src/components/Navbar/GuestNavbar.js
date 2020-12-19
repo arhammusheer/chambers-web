@@ -16,6 +16,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
+import BookIcon from '@material-ui/icons/Book';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+
 const useStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: 'white'
@@ -75,15 +78,24 @@ export default function PersistentDrawerLeft(props) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton
-          aria-label="saved menu routing"
-          aria-controls="primary-search-saved-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <ExitToAppIcon />
-        </IconButton>
-        <p>Open Saved</p>
+        <CustomLink ariaLabel={`Link to favorites page`} to={'/verification'}>
+          <Button>
+            <BookIcon />
+            <Typography variant="button" display="block" gutterBottom>
+              Booking
+            </Typography>
+          </Button>
+        </CustomLink>
+      </MenuItem>
+      <MenuItem>
+        <CustomLink ariaLabel={`Link to favorites page`} to={'/verification'}>
+          <Button>
+            <ThumbUpIcon />
+            <Typography variant="button" display="block" gutterBottom>
+              Verification
+            </Typography>
+          </Button>
+        </CustomLink>
       </MenuItem>
     </Menu>
   );
@@ -128,7 +140,6 @@ export default function PersistentDrawerLeft(props) {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
             >
               <MoreIcon />
             </IconButton>
