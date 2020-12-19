@@ -12,7 +12,7 @@ import HistoryIcon from '@material-ui/icons/History';
 import PeopleIcon from '@material-ui/icons/People';
 // pages
 import HomePage from './pages/HomePage';
-import UserPage from './pages/user/UserPage';
+import BookMapPage from './pages/user/BookMapPage';
 import SigninPage from './pages/SigninPage';
 import RegisterPage from './pages/RegisterPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
@@ -21,46 +21,42 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import logo from './logo.svg';
 import './App.css';
 
+const navMenuRouteData = [
+  { text: 'HOME', link: '/', iconFunc: () => { return <HomeIcon /> } },
+  { text: 'ABOUT', link: "/about", iconFunc: () => { return <AccountBoxIcon /> } },
+  { text: 'PLACES', link: "/profile", iconFunc: () => { return <PageviewIcon /> } },
+  { text: 'HISTORY', link: "/history", iconFunc: () => { return <HistoryIcon /> } },
+]
+
 function App() {
-  const userSignedIn = false;
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   
-  if (userSignedIn) {
-    const navMenuRouteData = [
-      { text: 'navMenu.home', link: '/', iconFunc: () => { return <HomeIcon /> } },
-      { text: 'navMenu.browse', link: "/browse", iconFunc: () => { return <PageviewIcon /> } },
-      { text: 'navMenu.profile', link: "/profile", iconFunc: () => { return <AccountBoxIcon /> } },
-      { text: 'navMenu.history', link: "/history", iconFunc: () => { return <HistoryIcon /> } },
-      { text: 'navMenu.social', link: "/social", iconFunc: () => { return <PeopleIcon /> } },
-    ]
-  
-    return (
-      <HashRouter initialIndex={0}>
-        <div style={{backgroundColor: "#DAE3E7"}}>
-          <AuthNavbar routeData={navMenuRouteData} logo={logo} />
-          <Route exact path="/" render={(props) => <HomePage {...props} /> } />
-          <Route path="/user" render={(props) => <UserPage {...props} /> } />
-          <Route path="/signin" render={(props) => <SigninPage {...props} /> } />
-          <Route path="/register" render={(props) => <RegisterPage {...props} /> } />
-          <Route path="/forgotpassword" render={(props) => <ForgotPasswordPage {...props} /> } /> 
-          <Footer />
-        </div>
-      </HashRouter>
-    );
-  } else {
-    return (
-      <HashRouter initialIndex={0}>
-        <div style={{backgroundColor: "#DAE3E7"}}>
-          <GuestNavbar logo={logo} />
-          <Route exact path="/" render={(props) => <HomePage {...props} /> } />
-          <Route path="/user" render={(props) => <UserPage {...props} /> } />
-          <Route path="/signin" render={(props) => <SigninPage {...props} /> } />
-          <Route path="/register" render={(props) => <RegisterPage {...props} /> } />
-          <Route path="/forgotpassword" render={(props) => <ForgotPasswordPage {...props} /> } /> 
-          <Footer />
-        </div>
-      </HashRouter>
-    );
-  }
+  return (
+    <div>
+      {isLoggedIn ? 
+        <HashRouter initialIndex={0}>
+          <div style={{backgroundColor: "#DAE3E7"}}>
+            <AuthNavbar routeData={navMenuRouteData} logo={logo} />
+            <Route exact path="/" render={(props) => <HomePage {...props} /> } />
+            <Route path="/bookmap" render={(props) => <BookMapPage {...props} /> } />
+            <Footer />
+          </div>
+        </HashRouter>
+        : 
+        <HashRouter initialIndex={0}>
+          <div style={{backgroundColor: "#DAE3E7"}}>
+            <GuestNavbar logo={logo} />
+            <Route exact path="/" render={(props) => <HomePage {...props} /> } />
+            <Route path="/bookmap" render={(props) => <BookMapPage {...props} /> } />
+            <Route path="/signin" render={(props) => <SigninPage {...props} /> } />
+            <Route path="/register" render={(props) => <RegisterPage {...props} /> } />
+            <Route path="/forgotpassword" render={(props) => <ForgotPasswordPage {...props} /> } /> 
+            <Footer />
+          </div>
+        </HashRouter>
+        }
+    </div>
+  )
 }
 
 export default App;
