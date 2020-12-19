@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-// List components
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+
+// NPM Components
+import ReactTypingEffect from 'react-typing-effect'
 
 function Copyright() {
   return (
@@ -41,6 +39,12 @@ export default function Footer(props) {
   const { iconLabelList } = props;
   return (
     <footer className={classes.footer}>
+    <Typography variant="h4" align="center" color="textPrimary" gutterBottom>
+      <ReactTypingEffect
+        className="typingeffect"
+        text={['Covid-19 Made EZ']}
+      />
+    </Typography>
       <Typography variant="h6" gutterBottom>
         Contact Info
       </Typography>
