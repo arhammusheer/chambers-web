@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInPage(props) {
   const classes = useStyles();
+  const { signinCallback } = props;
 
   const handleSubmit = (e) => {
     console.log("BLAH")
@@ -74,10 +75,7 @@ export default function SignInPage(props) {
         throw new Error("failed to authenticate user");
       })
       .then(responseJson => {
-        this.setState({
-          authenticated: true,
-          user: responseJson.user
-        });
+        signinCallback(responseJson)
       })
       .catch(error => {
         this.setState({
