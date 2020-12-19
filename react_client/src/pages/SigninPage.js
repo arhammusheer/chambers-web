@@ -8,7 +8,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -21,9 +20,9 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        HoloMemes
-      </Link>{' '}
+      <a target="_blank" rel="noopener noreferrer" href="https://material-ui.com/">
+        CovidEZ
+      </a>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -59,7 +58,33 @@ export default function SignInPage(props) {
   const classes = useStyles();
 
   const handleSubmit = (e) => {
+    console.log("BLAH")
     e.preventDefault();
+    fetch("http://localhost:5000/auth/login/success", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true
+      }
+    })
+      .then(response => {
+        if (response.status === 200) return response.json();
+        throw new Error("failed to authenticate user");
+      })
+      .then(responseJson => {
+        this.setState({
+          authenticated: true,
+          user: responseJson.user
+        });
+      })
+      .catch(error => {
+        this.setState({
+          authenticated: false,
+          error: "Failed to authenticate user"
+        });
+      });
   }
 
   // 100vh, so height of browser page is filled with background
@@ -113,12 +138,12 @@ export default function SignInPage(props) {
             <Grid container>
               <Grid item xs>
                 <CustomLink ariaLabel={`Link to forgot password page`} to={'/forgotpassword'}>
-                  <Link variant="body2">Forgot Password</Link>
+                  <Typography variant="body2">Forgot Password</Typography>
                 </CustomLink>
               </Grid>
               <Grid item>
                 <CustomLink ariaLabel={`Link to register page`} to={'/register'}>
-                  <Link variant="body2">No Account?</Link>
+                  <Typography variant="body2">No Account?</Typography>
                 </CustomLink>
               </Grid>
             </Grid>
