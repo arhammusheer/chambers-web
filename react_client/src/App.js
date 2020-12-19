@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { HashRouter, Route } from "react-router-dom"; // client-side routing
 // Custom components
 import GuestNavbar from './components/Navbar/GuestNavbar';
@@ -9,10 +9,11 @@ import HomeIcon from '@material-ui/icons/Home'
 import PageviewIcon from '@material-ui/icons/Pageview';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import HistoryIcon from '@material-ui/icons/History';
-import PeopleIcon from '@material-ui/icons/People';
 // pages
 import HomePage from './pages/HomePage';
-import BookMapPage from './pages/bookings/BookMapPage';
+import BookingMapPage from './pages/auth/BookingMapPage';
+import BookingFormPage from './pages/auth/BookingFormPage';
+import VerificationListPage from './pages/auth/VerificationListPage';
 import SigninPage from './pages/SigninPage';
 import RegisterPage from './pages/RegisterPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
@@ -29,7 +30,8 @@ const navMenuRouteData = [
 ]
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [verificationList, setVerificationList] = useState([]);
   /*
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
@@ -71,8 +73,9 @@ function App() {
           <div style={{backgroundColor: "#DAE3E7"}}>
             <AuthNavbar routeData={navMenuRouteData} logo={logo} />
             <Route exact path="/" render={(props) => <HomePage {...props} /> } />
-            <Route path="/bookmap" render={(props) => <BookMapPage {...props} /> } />
-            <Route path="/verification" render={(props) => <BookMapPage {...props} /> } />
+            <Route path="/bookingmap" render={(props) => <BookingMapPage {...props} /> } />
+            <Route path="/bookingform" render={(props) => <BookingFormPage {...props} /> } />
+            <Route path="/verification" render={(props) => <VerificationListPage {...props} verificationList={verificationList} /> } />
             <Footer />
           </div>
         </HashRouter>
@@ -81,7 +84,6 @@ function App() {
           <div style={{backgroundColor: "#DAE3E7"}}>
             <GuestNavbar logo={logo} />
             <Route exact path="/" render={(props) => <HomePage {...props} /> } />
-            <Route path="/bookmap" render={(props) => <BookMapPage {...props} /> } />
             <Route path="/signin" render={(props) => <SigninPage {...props} /> } />
             <Route path="/register" render={(props) => <RegisterPage {...props} /> } />
             <Route path="/forgotpassword" render={(props) => <ForgotPasswordPage {...props} /> } /> 
