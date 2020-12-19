@@ -2,17 +2,8 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
-import Fab from '@material-ui/core/Fab';
-// icons
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 // custom link
 import CustomLink from '../CustomLink';
-
-function Alert(props) {
-	return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
 
 const useStyles = makeStyles((theme) => ({
 	root: {
