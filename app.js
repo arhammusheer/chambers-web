@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 
 const session = require("express-session");
-const authRoutes = require("./routes/auth-routes");
+// const authRoutes = require("./routes/auth-routes");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser"); // parse cookie header
@@ -13,7 +13,12 @@ const path = require("path");
 const createError = require("http-errors");
 const logger = require("morgan");
 require("dotenv").config();
-// var indexRouter = require("./routes/index");
+
+
+const indexRouter = require("./routes/index");
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "hbs");
 
 app.use(
   cookieSession({
@@ -105,8 +110,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'react_client', 'build')));
 
 
-app.use("/auth", authRoutes);
-// app.use("/", indexRouter);
+// app.use("/auth", authRoutes);
+app.use("/", indexRouter);
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
