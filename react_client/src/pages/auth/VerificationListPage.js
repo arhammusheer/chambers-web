@@ -1,22 +1,25 @@
-
+import React from 'react'
+import {
+  Switch,
+  Route,
+  useRouteMatch
+} from "react-router-dom";
+// child pages
+import VerificationDetailsPage from './VerificationDetailsPage';
 
 export default function VerificationListPage(props) {
+  let match = useRouteMatch();
   const { verificationList } = props;
+  
   return (
-    <div>
-      <Grid container justify="center" spacing={1}>
-        {verificationList.map((val, idx) => {
-          return (
-            <Grid key={`${obj.name} ${idx}`} item xs={12} sm={6} lg={4} xl={3}>
-              <MemeCard
-                path={obj.imgPath}
-                title={obj.title}
-                postID={obj.id}
-              />
-            </Grid>
-          )
-        })}
-      </Grid>
-    </div>
+    <Switch>
+      <Route path={`${match.path}/:verificationID`}>
+        <VerificationDetailsPage verificationList={verificationList} />
+      </Route>
+      <Route path={match.path}>
+        <h3 style={{textAlign: "center"}}>QR Codes List</h3>
+        <VerificationCardList verificationList={verificationList} />
+      </Route>
+    </Switch>
   )
 }
