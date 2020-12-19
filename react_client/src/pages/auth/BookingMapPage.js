@@ -5,7 +5,7 @@ import {
   useRouteMatch
 } from "react-router-dom";
 // child pages
-import BookFormPage from './BookFormPage';
+import BookingFormPage from './BookingFormPage';
 // import constants
 import { bookingData } from '../../constants/bookingData';
 
@@ -15,7 +15,7 @@ export default function MemesPage() {
   return (
     <Switch>
       <Route path={`${match.path}/:bookingID`}>
-        <BookFormPage bookingData={bookingData} />
+        <BookingFormPage bookingData={bookingData} />
       </Route>
       <Route path={match.path}>
         <div>
