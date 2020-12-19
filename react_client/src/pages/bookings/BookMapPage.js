@@ -5,35 +5,23 @@ import {
   useRouteMatch
 } from "react-router-dom";
 // child pages
-import MemeCardList from '../../components/MemeCardList';
-import MemeDetailsPage from './MemeDetailsPage';
+import BookFormPage from './BookFormPage';
+// import constants
+import { bookingData } from '../../constants/bookingData';
 
 export default function MemesPage() {
   let match = useRouteMatch();
-  
-  const [memeList, setMemeList] = React.useState(memePosts);
-  function filterByTagCallback(tagList) {
-    const filteredMemeList = memePosts.filter((val, idx) => {
-      let noTagInMeme = false;
-      for (const tag of tagList) {
-        if (!val.tags.includes(tag)) {
-          noTagInMeme = true;
-          break;
-        }
-      };
-      return noTagInMeme;
-    });
-    setMemeList(filteredMemeList);
-  }
-  
+
   return (
     <Switch>
-      <Route path={`${match.path}/:memeID`}>
-        <MemeDetailsPage memeData={memePosts} />
+      <Route path={`${match.path}/:bookingID`}>
+        <BookFormPage bookingData={bookingData} />
       </Route>
       <Route path={match.path}>
-        <MemeTagFilter filterByTagCallback={filterByTagCallback} />
-        <MemeCardList memeData={memeList} />
+        <div>
+          <h1>BOOK MAP</h1>
+          <p>Toss a Google Maps w/ Markers here</p>
+        </div>
       </Route>
     </Switch>
   )
