@@ -20,11 +20,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
   },
   primaryButton: {
-    color: "white",
-    backgroundColor: "black",
-    '&:hover': {
-      background: "black",
-    }
   },
   landingRoot: {
     height: theme.spacing(93),
@@ -35,8 +30,10 @@ const useStyles = makeStyles((theme) => ({
 export default function HomePage(props) {
   const classes = useStyles();
   const { id } = props;
-  const [hololiveArrowShown, setHololiveArrowShown] = useState(false);
-  const hololiveButton = hololiveArrowShown ? <>{"Log In"} <ArrowRightAltIcon /></> : <>{"Log In"}</>
+  const [loginArrowShown, setLoginArrowShown] = useState(false);
+  const [registerArrowShown, setRegisterArrowShown] = useState(false);
+  const hololiveButton = loginArrowShown ? <>{"Log In"} <ArrowRightAltIcon /></> : <>{"Log In"}</>
+  const registerButton = registerArrowShown ? <>{"Register"} <ArrowRightAltIcon /></> : <>{"Register"}</>
 
   return (
     <div id={id} className={classes.heroContent} style={{ backgroundImage: `url(${MyBackgroundImg})`, backgroundSize: 'cover'}}>
@@ -67,12 +64,29 @@ export default function HomePage(props) {
                   <Button
                     size="large"
                     className={classes.primaryButton}
-                    variant="contained"
+                    variant="outlined"
                     color="primary"
-                    onMouseEnter={() => setHololiveArrowShown(true)}
-                    onMouseLeave={() => setHololiveArrowShown(false)}
+                    onMouseEnter={() => setLoginArrowShown(true)}
+                    onMouseLeave={() => setLoginArrowShown(false)}
                   >
                     {hololiveButton}
+                  </Button>
+                </CustomLink>
+              </Grid>
+              <Grid item>
+                <CustomLink
+                  ariaLabel="Hololive Link"
+                  to="/register"
+                >
+                  <Button
+                    size="large"
+                    className={classes.primaryButton}
+                    variant="contained"
+                    color="primary"
+                    onMouseEnter={() => setRegisterArrowShown(true)}
+                    onMouseLeave={() => setRegisterArrowShown(false)}
+                  >
+                    {registerButton}
                   </Button>
                 </CustomLink>
               </Grid>

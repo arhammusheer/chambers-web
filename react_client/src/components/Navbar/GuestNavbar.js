@@ -18,7 +18,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    backgroundColor: '#393e46'
+    backgroundColor: 'white'
   },
   grow: {
     flexGrow: 1,
@@ -107,12 +107,18 @@ export default function PersistentDrawerLeft(props) {
           </CustomLink>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <CustomLink ariaLabel={`Link to favorites page`} to={'/signin'} style={{textDecoration: 'none'}}>
-              <Button style={{color: 'inherit'}}>
+            <CustomLink ariaLabel={`Link to favorites page`} to={'/booking'}>
+              <Button>
                 <Typography variant="button" display="block" gutterBottom>
-                  Login
+                  Booking
                 </Typography>
-                <ExitToAppIcon />
+              </Button>
+            </CustomLink>
+            <CustomLink ariaLabel={`Link to favorites page`} to={'/verification'}>
+              <Button>
+                <Typography variant="button" display="block" gutterBottom>
+                  Verification
+                </Typography>
               </Button>
             </CustomLink>
           </div>

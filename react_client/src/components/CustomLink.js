@@ -17,7 +17,7 @@ export default function CustomLink(props) {
   return (
     <Link 
       component={renderLink}
-      color="inherit"
+      style={{textDecoration: 'none'}}
     >
       {props.children}
     </Link>

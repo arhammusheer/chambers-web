@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { HashRouter, Route } from "react-router-dom"; // client-side routing
 // Custom components
 import GuestNavbar from './components/Navbar/GuestNavbar';
@@ -30,6 +30,7 @@ const navMenuRouteData = [
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  /*
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     // Update the document title using the browser API
@@ -61,6 +62,7 @@ function App() {
         });
       });
   });
+  */
 
   return (
     <div>
@@ -70,6 +72,7 @@ function App() {
             <AuthNavbar routeData={navMenuRouteData} logo={logo} />
             <Route exact path="/" render={(props) => <HomePage {...props} /> } />
             <Route path="/bookmap" render={(props) => <BookMapPage {...props} /> } />
+            <Route path="/verification" render={(props) => <BookMapPage {...props} /> } />
             <Footer />
           </div>
         </HashRouter>
