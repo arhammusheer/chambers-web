@@ -18,7 +18,7 @@ import RegisterPage from './pages/RegisterPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 // logo
-import logo from './logo.svg';
+import logo from './constants/img/CovidEZ_Logo.png';
 import './App.css';
 
 const navMenuRouteData = [
