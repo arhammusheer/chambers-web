@@ -58,9 +58,13 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInPage(props) {
   const classes = useStyles();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
   // 100vh, so height of browser page is filled with background
   return (
-    <Container component="main" maxWidth="xs" style={{height: "100vh"}}>
+    <Container component="main" maxWidth="xs" style={{ height: "100vh" }}>
       <CssBaseline />
       <Paper className={classes.wrapper}>
         <div className={classes.formContainer}>
@@ -70,7 +74,7 @@ export default function SignInPage(props) {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -107,7 +111,7 @@ export default function SignInPage(props) {
               {"Sign In"}
             </Button>
             <Grid container>
-              <Grid item xs>      
+              <Grid item xs>
                 <CustomLink ariaLabel={`Link to forgot password page`} to={'/forgotpassword'}>
                   <Link variant="body2">Forgot Password</Link>
                 </CustomLink>
