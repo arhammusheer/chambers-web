@@ -16,6 +16,8 @@ require("dotenv").config();
 
 
 const indexRouter = require("./routes/index");
+const bookingsRouter = require("./routes/bookings");
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
@@ -113,6 +115,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // app.use("/auth", authRoutes);
 app.use("/", indexRouter);
+app.use("/bookings", bookingsRouter);
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
