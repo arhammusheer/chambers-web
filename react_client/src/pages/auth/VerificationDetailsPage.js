@@ -2,14 +2,11 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 // Material UI components
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Grid, Typography, Fab, Paper, Button } from '@material-ui/core';
+import { Container, Grid, Fab, Paper } from '@material-ui/core';
 // Material UI Icons
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-
-  
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+// (temp) QR Code asset
+import QRCodeImg from '../../constants/img/a-guide-to-qr-codes-and-how-to-scan-qr-codes-2.png';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,6 +59,11 @@ export default function MemeDetailsPage(props) {
         <Fab color="primary" aria-label="add" className={classes.absoluteTopLeft} onClick={handleBackClick}>
           <ArrowBackIcon />
         </Fab>
+        <Grid container>
+          <Grid item xs={12} sm={8}>
+            <img src={QRCodeImg} alt="QR code from internet" />
+          </Grid>
+        </Grid>
       </Paper>
     </Container>
   );
