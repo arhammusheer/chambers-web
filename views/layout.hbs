@@ -8,66 +8,21 @@
 
   <!-- Local CSS -->
   <link rel="stylesheet" href="/stylesheets/style.css">
-  <link rel="stylesheet" href="/stylesheets/animation.css">
-  <link rel="stylesheet" href="/stylesheets/scrollbar.css">
   
   <!-- Bootstrap CSS -->
-  <link disabled="true" id="light-theme" rel="stylesheet" type="text/css"
-    href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/flatly/bootstrap.min.css">
-  <link disabled="true" id="dark-theme" rel="stylesheet" type="text/css"
+  <link id="dark-theme" rel="stylesheet" type="text/css"
     href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/darkly/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
-  <title>Chambers</title>
+  <title>letMeIn</title>
 
 </head>
 
 <body style="font-family: 'Montserrat', sans-serif;">
 
-  <nav class="navbar navbar-expand-lg" id="page-nav">
-    <a class="navbar-brand" href="/"><i class="fas fa-cubes fa-lg"></i> Chambers</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="fas fa-bars text-success"></i>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
-        </li>
-        {{#unless user}}
-        <li class="nav-item">
-          <a class="nav-link" href="/auth/google"><i class="fab fa-google"></i> Login</a>
-        </li>
-        {{/unless}}
-        {{#if user}}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user"></i> Profile
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <div class="dropdown-item" href="#">
-              <div class="d-flex justify-content-center align-items-center mb-2">
-                <img src="{{user.pictureUrl}}" style="width:2rem; border-radius: 2rem" />
-              </div>
-              <span>{{user.displayName}}</span>
-            </div>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/profile">My Profile</a>
-            <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-          </div>
-        </li>
-        {{/if}}
-      </ul>
-
-      <a class="nav-link text-success" onclick="toggleTheme()"><i id="theme-icon" class="fas fa-cloud-sun"></i></a>
-    </div>
-  </nav>
   {{{body}}}
 
   <!-- Optional JavaScript -->
@@ -80,7 +35,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
-  <script src="/javascripts/theme.js"></script>
 </body>
 
 </html>

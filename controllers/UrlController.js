@@ -38,41 +38,4 @@ urlController.googleOauthCallback = passport.authenticate("google", {
   failureRedirect: "/login",
 });
 
-urlController.room = function (req, res, next) {
-  if (req.user) {
-    res.render("room", { roomName: req.params.roomKey });
-  } else {
-    res.redirect("/login");
-  }
-};
-
-urlController.profile = function (req, res, next) {
-  if (req.user) {
-    res.render("profile", { user: req.user });
-  } else {
-    res.redirect("/login");
-  }
-};
-
-urlController.profileEdit = function (req, res, next) {
-  if (req.user) {
-    User.findOneAndUpdate({ _id: req.user._id }, req.body, function (
-      err,
-      docs
-    ) {
-      if (err) {
-        console.log(err);
-        res.status(500);
-      } else {
-        console.log("updated user : ", docs);
-        if (req.body.nickname) req.user.nickname = req.body.nickname;
-        if(req.body.color) req.user.color = req.body.color;
-        res.redirect(req.get("referer"));
-      }
-    });
-  } else {
-    res.status(400);
-  }
-};
-
 module.exports = urlController;

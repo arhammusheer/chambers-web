@@ -21,12 +21,4 @@ router.get(
   }
 );
 
-// User Profile
-router.get("/profile", urlController.profile);
-
-router.post("/profile", urlController.profileEdit);
-
-// Rooms
-router.get("/room/:roomKey", urlController.room);
-
 module.exports = router;
