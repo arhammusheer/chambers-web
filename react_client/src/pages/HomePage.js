@@ -9,12 +9,11 @@ import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import MyBackgroundImg from '../constants/img/restaurant-chocolat.jpg'
 // Custom component & data
 import CustomLink from '../components/CustomLink'
-// NPM Components
-import ReactTypingEffect from 'react-typing-effect'
+import Carousel from '../components/Carousel';
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
-    padding: theme.spacing(25, 0, 30),
+    padding: theme.spacing(15, 0, 30),
   },
   buttons: {
     marginTop: theme.spacing(4),
@@ -39,21 +38,12 @@ export default function HomePage(props) {
     <div id={id} className={classes.heroContent} style={{ backgroundImage: `url(${MyBackgroundImg})`, backgroundSize: 'cover'}}>
       <Container maxWidth="sm">
         <Paper>
-          <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
-            Keep yourself safe.
+          <Typography variant="h5" align="center" color="textPrimary">
+          𝓢𝓸𝓬𝓲𝓪𝓵 𝓭𝓲𝓼𝓽𝓪𝓷𝓬𝓲𝓷𝓰 𝓶𝓪𝓭𝓮 𝓮𝓪𝓼𝔂.
           </Typography>
-          <Typography component="h6" variant="h6" align="center" color="textPrimary" gutterBottom>
-            <ReactTypingEffect
-              className="typingeffect"
-              text={['Covid-19 Made Easy']}
-            />
-          </Typography>
-          <Typography component="h5" variant="h5" align="center" color="textPrimary" gutterBottom>
-            Check how crowded your favorite restaurants are
-          </Typography>
-          <Typography component="h5" variant="h5" align="center" color="textPrimary" gutterBottom>
-            AND reserve a spot
-          </Typography>
+          <Container style={{marginTop: 5}}>
+            <Carousel />
+          </Container>
           <div className={classes.buttons}>
             <Grid container spacing={2} justify="center">
               <Grid item>
