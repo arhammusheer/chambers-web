@@ -30,8 +30,17 @@ const navMenuRouteData = [
 ]
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState({
+    authenticated: true,
+    user: ''
+  });
   const [verificationList, setVerificationList] = useState([]);
+  const signinCallback = (responseJson) => {
+    setIsLoggedIn({
+      authenticated: true,
+      user: responseJson.user
+    });
+  }
   /*
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
@@ -68,7 +77,7 @@ function App() {
 
   return (
     <div>
-      {isLoggedIn ? 
+      {isLoggedIn.authenticated ? 
         <HashRouter initialIndex={0}>
           <div style={{backgroundColor: "#DAE3E7"}}>
             <AuthNavbar routeData={navMenuRouteData} logo={logo} />
@@ -84,7 +93,7 @@ function App() {
           <div style={{backgroundColor: "#DAE3E7"}}>
             <GuestNavbar logo={logo} />
             <Route exact path="/" render={(props) => <HomePage {...props} /> } />
-            <Route path="/signin" render={(props) => <SigninPage {...props} /> } />
+            <Route path="/signin" render={(props) => <SigninPage {...props} signinCallback={signinCallback} /> } />
             <Route path="/register" render={(props) => <RegisterPage {...props} /> } />
             <Route path="/forgotpassword" render={(props) => <ForgotPasswordPage {...props} /> } /> 
             <Footer />
