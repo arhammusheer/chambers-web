@@ -1,7 +1,9 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
+import Typography from '@material-ui/core/Typography';
 // custom link
 import CustomLink from '../CustomLink';
 
@@ -34,7 +36,7 @@ export default function MemeCard(props) {
 						{title}
 					</Typography>
 				</CardContent>
-				<CardActionArea onClick={handleClick}>
+				<CardActionArea>
 					<img src={path} alt="loading..." className={classes.media} />
 				</CardActionArea>
 			</Card>

@@ -4,6 +4,8 @@ import {
   Route,
   useRouteMatch
 } from "react-router-dom";
+// custom components
+import VerificationCardList from '../../components/VerificationCardList';
 // child pages
 import VerificationDetailsPage from './VerificationDetailsPage';
 

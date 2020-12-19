@@ -46,7 +46,7 @@ export default function MemeCardList(props) {
   // initialize pagination constants
   const numItemsPerPage = 30;
   const [pageNumber, setPageNumber] = React.useState(1);
-  const numPages = Math.ceil(memeData.length / numItemsPerPage);
+  const numPages = Math.ceil(verificationList.length / numItemsPerPage);
   const handlePageChange = (event, value) => {
     setPageNumber(value);
     window.scrollTo(0, 0); // scroll to top
