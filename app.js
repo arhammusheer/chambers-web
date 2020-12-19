@@ -107,7 +107,8 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'react_client', 'build')));
+// app.use(express.static(path.join(__dirname, 'react_client', 'build')));
+app.use(express.static(path.join(__dirname, "public")));
 
 
 // app.use("/auth", authRoutes);
@@ -115,9 +116,9 @@ app.use("/", indexRouter);
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'react_client', 'build', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'react_client', 'build', 'index.html'));
+// });
 
 
 // catch 404 and forward to error handler
