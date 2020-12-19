@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 // Material UI components
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Grid, Typography, Fab, Paper, Button } from '@material-ui/core';
+import { Container, Grid, Typography, Fab, Paper } from '@material-ui/core';
 // Material UI Icons
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 

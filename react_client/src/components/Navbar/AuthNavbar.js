@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 // custom React Router link
 import CustomLink from '../CustomLink';
 // Navigation Menu (navbar && sidebar)
-import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';

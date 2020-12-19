@@ -36,7 +36,6 @@ const useFooterStyles = makeStyles((theme) => ({
 
 export default function Footer(props) {
   const classes = useFooterStyles();
-  const { iconLabelList } = props;
   return (
     <footer className={classes.footer}>
     <Typography variant="h4" align="center" color="textPrimary" gutterBottom>
