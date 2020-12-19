@@ -7,7 +7,7 @@
     "start:dev": "nodemon ./bin/www",
     "server": "node ./bin/www",
     "client": "cd react_client && npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run start:dev\" \"npm run client\""
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -28,6 +28,7 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "concurrently": "^5.3.0"
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.6"
   }
 }
