@@ -1,20 +1,29 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const cookieSession = require("cookie-session");
+const express = require("express");
+const app = express();
+
+const session = require("express-session");
+const authRoutes = require("./routes/auth-routes");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const cookieParser = require("cookie-parser"); // parse cookie header
+const bodyParser = require("body-parser");
+
+const path = require("path");
+const createError = require("http-errors");
+const logger = require("morgan");
 require("dotenv").config();
-var bodyParser = require("body-parser");
-var indexRouter = require("./routes/index");
+// var indexRouter = require("./routes/index");
 
-var app = express();
-
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "hbs");
+app.use(
+  cookieSession({
+    name: "session",
+    keys: [process.env.EXPRESS_SESSION_SECRET],
+    maxAge: 24 * 60 * 60 * 100
+  })
+);
 
 // MongoDB setup
-var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose
   .connect(process.env.MONGODB_URL_WITH_CREDS, {
@@ -30,20 +39,27 @@ mongoose
     console.log(err);
   });
 
-// Passport Auth Setup
-var passport = require("passport");
-var GoogleStrategy = require("passport-google-oauth20").Strategy;
+app.use(session({
+  secret: process.env.EXPRESS_SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+}));
 
-app.use(
-  require("express-session")({
-    secret: process.env.EXPRESS_SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+// Passport Auth Setup
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// set up cors to allow us to accept requests from our client
+app.use(
+  cors({
+    origin: "http://localhost:3000", // allow to server to accept request from different origin
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true // allow session cookie from browser to pass through
+  })
+);
 
 // User Auth Setup
 
@@ -88,7 +104,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
+
+app.use("/auth", authRoutes);
+// app.use("/", indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
