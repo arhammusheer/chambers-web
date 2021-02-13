@@ -1,32 +1,24 @@
 var express = require("express");
 var router = express.Router();
-var urlController = require("../controllers/UrlController.js");
+var indexController = require("../controllers/indexController.js");
 var passport = require("passport");
 
-router.get("/", urlController.home);
+router.get("/", indexController.home);
 
-router.get("/login", urlController.login);
+router.get("/login", indexController.login);
 
-router.get("/logout", urlController.logout);
+router.get("/logout", indexController.logout);
 
 // google Auth
-router.get("/auth/google", urlController.googleOauth);
+router.get("/auth/google", indexController.googleOauth);
 
 // google Auth Callback
 router.get(
   "/auth/google/callback",
-  urlController.googleOauthCallback,
+  indexController.googleOauthCallback,
   function (req, res) {
     res.redirect("/");
   }
 );
-
-// User Profile
-router.get("/profile", urlController.profile);
-
-router.post("/profile", urlController.profileEdit);
-
-// Rooms
-router.get("/room/:roomKey", urlController.room);
 
 module.exports = router;
