@@ -1,16 +1,13 @@
 {{!-- <div style="width: 90vw; height: 500px">
-<canvas id="Canvas">
-  Your browser does not support the whiteboard.
-</canvas>
+  <canvas id="Canvas">
+    Your browser does not support the whiteboard.
+  </canvas>
 </div> --}}
 <div class="container-fluid row justify-content-between">
   <div id="active-user-list" class="px-3">
     <div class="text-success">
       Connecting...
-      <div
-        class="spinner-border text-success spinner-border-sm"
-        role="status"
-      ></div>
+      <div class="spinner-border text-success spinner-border-sm" role="status"></div>
       <small>
         If you have not set up your nickname or color, do that in
         <a href="/profile" class="text-info">
@@ -20,49 +17,8 @@
       </small>
     </div>
   </div>
-  <button
-    class="btn btn-sm very-rounded btn-success"
-    href="#"
-    data-toggle="modal"
-    data-target="#whiteboard-modal"
-  >
-    <i class="fas fa-chalkboard-teacher"></i>
-    Whiteboard
-  </button>
-  <div
-    class="modal fade"
-    tabindex="-1"
-    aria-labelledby="whiteboard-modal"
-    id="whiteboard-modal"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h6 class="modal-title" id="whiteboardModalLabel">
-            Whiteboard
-          </h6>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true" class="text-danger">
-              ×
-            </span>
-          </button>
-        </div>
-        <div class="modal-body"></div>
-      </div>
-    </div>
-  </div>
 </div>
-<div
-  class="bg-secondary p-2 my-2"
-  style="height: 70vh; overflow-y: scroll;"
-  id="message-log"
->
+<div class="bg-secondary p-2 my-2" style="height: 70vh; overflow-y: scroll;" id="message-log">
   <div class="h2 font-weight-bold pl-2 m-0">
     Global Chat
   </div>
@@ -72,24 +28,11 @@
 </div>
 <small id="is-typing-field" class="text-success"></small>
 <div class="input-group p-1 pr-2 d-flex align-items-center">
-  <input
-    type="text"
-    class="form-control bg-light font-weight-bold text-dark very-rounded"
-    aria-label="Message Global Chat"
-    id="message-field"
-    placeholder="Message Here"
-    maxlength="500"
-    autofocus
-  />
+  <input type="text" class="form-control bg-light font-weight-bold text-dark very-rounded"
+    aria-label="Message Global Chat" id="message-field" placeholder="Message Here" maxlength="500" autofocus />
   <div class="input-group-append">
-    <div
-      class="d-flex align-items-center pl-2"
-      type="button"
-      id="send-message-button"
-    >
-      <div
-        class="d-flex align-items-center very-rounded shadow-lg shadow-light bg-success"
-      >
+    <div class="d-flex align-items-center pl-2" type="button" id="send-message-button">
+      <div class="d-flex align-items-center very-rounded shadow-lg shadow-light bg-success">
         <i class="fas fa-paper-plane p-3 text-white"></i>
       </div>
     </div>
@@ -108,24 +51,22 @@
 </audio>
 <div id="current-user-name" hidden>
   {{#if user.nickname}}
-    {{user.nickname}}
+  {{user.nickname}}
   {{else}}
-    {{user.displayName}}
+  {{user.displayName}}
   {{/if}}
 </div>
 <div id="current-user-id" hidden>
   {{user._id}}
 </div>
 {{#if user.color}}
-  <div id="current-user-color" hidden>
-    {{user.color}}
-  </div>
+<div id="current-user-color" hidden>
+  {{user.color}}
+</div>
 {{/if}}
 <div id="user-image" hidden>
   {{user.pictureUrl}}
 </div>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"
-></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 <script src="/javascripts/chat.js"></script>
-<script src="/javascripts/canvas.js"></script>
+{{!-- <script src="/javascripts/canvas.js"></script> --}}
